@@ -72,7 +72,7 @@ public class Student implements Serializable{
 		String toReturn = "NAME: " + firstName +" "+ lastName + ", " + "\n"
 		+ "GPA: " + GPA + "\n" + "CURRENT ADDRESS: " + currentAddress+ "\n"
 		+ "HOME ADDRESS: " + homeAddress + "\n" + "PHONE NUMBER: " + phoneNumber;
-		return toReturn;
+		return toReturn+"\n";
 	}
 	
 }

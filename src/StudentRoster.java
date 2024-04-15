@@ -53,7 +53,7 @@ public class StudentRoster  implements Serializable{
 		{
 			if(students[i] instanceof Student) 
 			{
-				toReturn = toReturn + students[i].toString() + "\n";
+				toReturn = toReturn+"\n" + students[i].toString();
 			}
 		}
 		return toReturn + "----------------------------";

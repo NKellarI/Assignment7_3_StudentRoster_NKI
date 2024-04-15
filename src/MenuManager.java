@@ -30,7 +30,7 @@ public class MenuManager {
 	{
 		Scanner scnr = new Scanner(System.in);
 		switch(cmd) {
-		  case "make_students":
+		  case "1":
 			 //Make a Menu with the name Make Student
 			 makeStudentMenu = new Menu("Make Student");
 			 // Makes a list of objects as the parameters to make a student have different types
@@ -54,6 +54,16 @@ public class MenuManager {
 				  }else {studentValues[j] = scnr.nextLine();}
 			  } 
 			  	Application.roster.createStudent((String)studentValues[0],(String) studentValues[1], (double)studentValues[2], (String)studentValues[3], (String)studentValues[4], (String)studentValues[5]);
+				System.out.print("Do you wish to continue to make students? y/n");
+				String zo = scnr.nextLine();
+				if(zo.equals("y")) 
+				{
+					
+				}else 
+				{
+					break;
+				}
+				 
 			 }
 			 //Waits for next command 
 			 System.out.print("All Student Creation Complete!");
@@ -65,13 +75,13 @@ public class MenuManager {
 			  //Makes a Menu with the home name
 			  homeMenu = new Menu("Home");
 			  //Stores a list of things meant to be drawn to the menu instance of homeMenu
-			  homeMenu.setToDraw(new String[] {"TYPE THE COMMANDS TO ENTER MENU!","Typing |home| will return you here",
-				" |make_students| -> Makes students at the first available index",
-				" |print_roster| -> prints roster",
-				" |find_student| -> enter a first and last to find a student",
-				" |save_roster| -> Saves roster to disk",
-				" |load_roster| -> Loads roster from disk",
-				" |exit| -> Erm Its kills program"
+			  homeMenu.setToDraw(new String[] {"TYPE THE COMMANDS TO ENTER MENU! The number is how you select a command","Typing |home| will return you here",
+				" |make_students,1| -> Makes students at the first available index",
+				" |print_roster,2| -> prints roster",
+				" |find_student,3| -> enter a first and last to find a student",
+				" |save_roster,4| -> Saves roster to disk",
+				" |load_roster,5| -> Loads roster from disk",
+				" |exit,6| -> Erm Its kills program"
 			  });
 			  //Draws the menu elements with the boolean true meaning newline
 			  homeMenu.drawElements(true);
@@ -79,14 +89,14 @@ public class MenuManager {
 			  String input = scnr.next();
 			  Command(input);
 		    break;
-		  case "print_roster":
-			  homeMenu = new Menu("Home");
-			  System.out.print(Application.roster.toString());
-			  System.out.print("TYPE CMD:");
+		  case "2":
+			  homeMenu = new Menu("Roster Output Menu");
+			  System.out.println(Application.roster.toString());
+			  System.out.print("TYPE CMD:|home|");
 			  String pi = scnr.next();
 			  Command(pi);
 			  break;
-		  case "find_student":
+		  case "3":
 			  findStudentMenu = new Menu("Find Student");
 			  findStudentMenu.setToDraw(new String[] {"Enter A Studnet Name:","Enter First And Last Name:"});
 			  String name = "";
@@ -101,11 +111,11 @@ public class MenuManager {
 					  System.out.print(Application.roster.getStudentFromRosterIndex(i).toString());
 				  }else {System.out.println("Student Not Found Try Consulting the Roster!");}
 			  }
-			  System.out.println("TYPE CMD:");
+			  System.out.println("TYPE CMD: |home|");
 			  String zi = scnr.next();
 			  Command(zi);
 			  break;
-		  case"save_roster":
+		  case"4":
 			  findStudentMenu = new Menu("Saving Student Roster!");
 			  File file = new File("studentRoster.data"); 
 			  try {
@@ -119,7 +129,7 @@ public class MenuManager {
 			  	System.out.println("Saving Complete!");
 			  	Command("home");
 			  break;
-		  case"load_roster":
+		  case"5":
 			  File ReadFile =  new File("studentRoster.data");    
 		        try {
 		            FileInputStream fis = new FileInputStream(ReadFile);
@@ -130,9 +140,10 @@ public class MenuManager {
 		        } catch (Exception e) {
 		            e.printStackTrace();
 		        }
+		        System.out.println("Loaded Roster!");
 		        Command("home");
 			  break;
-		  case"exit":
+		  case"6":
 			  System.exit(0);
 			  break;
 		  default:
