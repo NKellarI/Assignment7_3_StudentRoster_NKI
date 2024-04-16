@@ -98,19 +98,23 @@ public class MenuManager {
 			  break;
 		  case "3":
 			  findStudentMenu = new Menu("Find Student");
-			  findStudentMenu.setToDraw(new String[] {"Enter A Studnet Name:","Enter First And Last Name:"});
+			  findStudentMenu.setToDraw(new String[] {"Enter First Name:","Enter Last Name:"});
 			  String name = "";
 			  for(int i =0; i < 2; i++) 
 			  {
-				 name = name + scnr.next().toLowerCase();
+				  findStudentMenu.drawElement(true,i);
+				 name = name + scnr.nextLine().toLowerCase();
 			  }
+			  boolean isFound =false;
 			  for(int i = 0; i < Application.roster.getStudentRosterCount(); i++) 
 			  {
 				  if((Application.roster.getStudentFromRosterIndex(i).getFirstName().toLowerCase() + Application.roster.getStudentFromRosterIndex(i).getLastName().toLowerCase()).equals(name)) 
 				  {
 					  System.out.print(Application.roster.getStudentFromRosterIndex(i).toString());
-				  }else {System.out.println("Student Not Found Try Consulting the Roster!");}
+					  isFound = true;
+				  }
 			  }
+			  if(isFound == false){System.out.println("Student Not Found Try Consulting the Roster!");}
 			  System.out.println("TYPE CMD: |home|");
 			  String zi = scnr.next();
 			  Command(zi);
